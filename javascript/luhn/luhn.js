@@ -1,7 +1,8 @@
 var Luhn = function(val) {
+	var number = val;
 	var checkDigit = val % 10;
 	var addends = addendsParse(val);
-	var checksum = addends.reduce(function(a, b) {return a + b;});
+	var checksum = checksumArray(addends);
 	var valid = checksum%10==0;
 	return {
 		checkDigit: checkDigit,
@@ -20,7 +21,35 @@ var Luhn = function(val) {
 		}
 		return addendsArray.reverse();
 	}
-	cal
+	function checksumArray(arr) {
+		return arr.reduce(function(a, b) {return a + b;});
+	}
+};
+
+Luhn.create = function(num) {
+	var luhnNum = new Luhn(num);
+
+	if (!luhnNum.valid) {
+		var addendsTempArr = num.toString().split('').reverse();
+		var createsum = 0;
+		for (var i=0;i<addendsTempArr.length;i++) {
+			if (i%2==0) {
+				var tempSum = parseInt(addendsTempArr[i]*2);
+				if (tempSum > 9) {
+					createsum += tempSum - 9;
+				}
+				else {
+					createsum += tempSum;
+				}
+			}
+			else {
+				createsum += parseInt(addendsTempArr[i]);
+			}
+		}
+		// calculate new check digit
+		var newCheckDigit = (10 - createsum%10)%10;
+  	}
+  	return num * 10 + newCheckDigit;
 };
 
 module.exports = Luhn;
