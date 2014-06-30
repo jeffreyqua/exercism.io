@@ -1,10 +1,11 @@
 var Octal = function(val) {
 	var octalArray = val.split("");
+	var octalValue = calcDecimal();
 
 	return {
-		toDecimal: toDecimal
+		toDecimal: returnDecimal
 	}
-	function toDecimal() {
+	function calcDecimal() {
 		var octalValue = 0;
 		var parseOctalArray = octalArray.reverse();
 		for (var i=0; i<parseOctalArray.length; i++) {
@@ -13,6 +14,9 @@ var Octal = function(val) {
 		if (isNaN(octalValue)) {
 			octalValue = 0;
 		}
+		return octalValue;
+	}
+	function returnDecimal() {
 		return octalValue;
 	}
 }

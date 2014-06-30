@@ -1,10 +1,11 @@
 var Binary = function(val) {
 	var binaryArray = val.split("");
+	var binaryValue = calcDecimal();
 
 	return {
-		toDecimal: toDecimal
+		toDecimal: returnDecimal
 	}
-	function toDecimal() {
+	function calcDecimal() {
 		var binaryValue = 0;
 		var parseBinaryArray = binaryArray.reverse();
 		for (var i=0; i<parseBinaryArray.length; i++) {
@@ -13,6 +14,9 @@ var Binary = function(val) {
 				binaryValue += thisValue;
 			}
 		}
+		return binaryValue;
+	}
+	function returnDecimal() {
 		return binaryValue;
 	}
 }

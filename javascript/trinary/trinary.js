@@ -1,10 +1,11 @@
 var Trinary = function(val) {
 	var trinaryArray = val.split("");
+	var trinaryValue = calcDecimal();
 
 	return {
-		toDecimal: toDecimal
+		toDecimal: returnDecimal
 	}
-	function toDecimal() {
+	function calcDecimal() {
 		var trinaryValue = 0;
 		var parseTrinaryArray = trinaryArray.reverse();
 		for (var i=0; i<parseTrinaryArray.length; i++) {
@@ -13,6 +14,9 @@ var Trinary = function(val) {
 				trinaryValue += thisValue;
 			}
 		}
+		return trinaryValue;
+	}
+	function returnDecimal() {
 		return trinaryValue;
 	}
 }
